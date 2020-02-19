@@ -54,7 +54,7 @@ spring:
   application:
     name: App-Dev
   datasource:
-    url: jdbc:mysql://localhost:3306/vir?useSSL=false&characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci
+    url: jdbc:mysql://localhost:3306/vir?characterEncoding=utf8&connectionCollation=utf8mb4_unicode_ci
     username: root
     password: root
     initialize: false

@@ -26,7 +26,7 @@ if "%1"=="prod" (
 	java -Xms256m -Xmx512m -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000 -jar VIR-Backend/target/VIR-Backend-*.jar
 ) else if "%1" == "run" (
 	echo Debugging the web application
-	java -Xms256m -Xmx512m -jar VIR-Backend/target/VIR-Backend-4.0.9.jar
+	java -Xms256m -Xmx512m -jar VIR-Backend/target/VIR-Backend-*.jar
 ) else (
 	echo Building dev default
 	call mvnw.cmd install -Dnpm.executable=npm.cmd -Dng.executable=ng.cmd
