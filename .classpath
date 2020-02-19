@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path=".history/Code/VIR-Backend/src/main/java"/>
+	<classpathentry kind="src" path="Code/VIR-Android/app/src/androidTest/java"/>
+	<classpathentry kind="src" path="Code/VIR-Android/app/src/main/gen"/>
+	<classpathentry kind="src" path="Code/VIR-Android/app/src/main/java"/>
+	<classpathentry kind="src" path="Code/VIR-Android/app/src/test/java"/>
+	<classpathentry excluding="com/vir/service/impl/|com/vir/config/" kind="src" path="Code/VIR-Backend/src/main/java"/>
+	<classpathentry kind="src" path="Code/VIR-Backend/src/main/java/com/vir/config"/>
+	<classpathentry kind="src" path="Code/VIR-Backend/src/main/java/com/vir/service/impl"/>
+	<classpathentry kind="src" path="Code/VIR-Backend/src/test/java"/>
+	<classpathentry kind="lib" path="Code/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="Code/VIR-Android/gradle/wrapper/gradle-wrapper.jar"/>
+	<classpathentry kind="lib" path="Code/VIR-Backend/.mvn/wrapper/maven-wrapper.jar"/>
+	<classpathentry kind="lib" path="Code/VIR-Backend/target/VIR-Backend-3.0.23.jar"/>
+	<classpathentry kind="output" path="Code/VIR-Backend/target/classes"/>
+</classpath>

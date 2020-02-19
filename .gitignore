@@ -1,0 +1,10 @@
+.history
+Code/node_modules
+Code/node_modules/node-sass
+/bin/
+Code/*.log
+.DS_Store
+Code/tmp
+Code/tessdata
+
+.idea/
