@@ -1,0 +1,19 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\VIR-Backend",
+    "\\VIR-Frontend",
+    "\\VIR-Frontend\\src",
+    "\\VIR-Frontend\\src\\app",
+    "\\VIR-Frontend\\src\\app\\layout",
+    "\\VIR-Frontend\\src\\app\\layout\\account",
+    "\\VIR-Frontend\\src\\app\\layout\\register",
+    "\\VIR-Frontend\\src\\app\\shared",
+    "\\VIR-Frontend\\src\\app\\shared\\components",
+    "\\VIR-Frontend\\src\\app\\shared\\components\\sidebar",
+    "\\VIR-Frontend\\src\\app\\shared\\interface",
+    "\\VIR-Frontend\\src\\app\\shared\\services"
+  ],
+  "SelectedNode": "\\VIR-Backend\\src",
+  "PreviewInSolutionExplorer": false
+}

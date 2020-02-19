@@ -1,0 +1,144 @@
+{
+    //https://code.visualstudio.com/docs/editor/tasks-appendix
+    //https://code.visualstudio.com/Docs/editor/tasks
+    "version": "2.0.0",
+    "osx": { "options": { "cwd": "../" } },
+    "windows": { "options": { "cwd": "../" } },
+    "tasks":
+    [
+        {
+            "label": "build-project",
+            "type": "shell",
+            "command": "./virs.sh",
+            "isBackground": false,
+            "group":
+            {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": { "command": "virs.cmd" }
+        },
+        {
+            "label": "prepare-project-deployment",
+            "type": "shell",
+            "command": "./virs.sh prod",
+            "isBackground": false,
+            "group":
+            {
+                "kind": "build",
+                "isDefault": true
+            },
+            "windows": { "command": "virs.cmd prod" }
+        },
+        {
+            "label": "test-project",
+            "type": "shell",
+            "command": "./virs.sh test",
+            "isBackground": false,
+            "group":
+            {
+                "kind": "test",
+                "isDefault": true
+            },
+            "windows": { "command": "virs.cmd test" }
+        },
+        {
+            "label": "project-integatetion-test",
+            "type": "shell",
+            "command": "./virs.sh integration-test",
+            "isBackground": false,
+            "group":
+            {
+                "kind": "test",
+                "isDefault": true
+            },
+            "windows": { "command": "virs.cmd integration-test" }
+        },
+        {
+            "label": "install-all-project-dependencies",
+            "type": "shell",
+            "command": "./virs.sh install",
+            "isBackground": false,
+            "group": "test",
+            "windows": { "command": "virs.cmd install" }
+        },
+        {
+            "label": "clean-project",
+            "type": "shell",
+            "command": "./virs.sh clean",
+            "isBackground": false,
+            "windows": { "command": "virs.cmd clean" }
+        },
+        {
+            "label": "run-project",
+            "type": "shell",
+            "command": "./virs.sh run",
+            "isBackground": false,
+            "windows": { "command": "virs.cmd run" }
+        },
+        {
+            "label": "debug-project",
+            "type": "shell",
+            "command": "./virs.sh debug",
+            "isBackground": false,
+            "windows": { "command": "virs.cmd debug" }
+        },
+        {
+            "label": "build-run-project",
+            "type": "shell",
+            "command": "./virs.sh run",
+            "isBackground": false,
+            "windows": { "command": "virs.cmd run" },
+            "dependsOn": [ "build-project" ]
+        },
+        {
+            "label": "build-debug-project",
+            "type": "shell",
+            "command": "./virs.sh debug",
+            "isBackground": false,
+            "windows": { "command": "virs.cmd debug" },
+            "dependsOn": [ "build-project" ]
+        },
+        {
+            "label": "open-browser",
+            "type": "shell",
+            "command": "open http://localhost:8080",
+            "isBackground": false,
+            "windows": { "command": "start http://localhost:8080" }
+        },
+        {
+            "label": "open-live-browser",
+            "type": "shell",
+            "command": "open http://localhost:4200",
+            "isBackground": false,
+            "windows": { "command": "start http://localhost:4200" }
+        },
+        // {
+        //     "label": "build-run-backend",
+        //     "dependsOn": [ "build-backend", "run-backend"/*, "open-browser"*/ ]
+        // },
+        // {
+        //     "label": "run",
+        //     "dependsOn": [ "start-web-server", "open-browser" ]
+        // }
+        // {
+            // "label": "my-task-label",
+            // "type": "shell | process",
+            // "command": "",
+            // "isBackground": false,
+            // "args":
+            // [
+            //     ""
+            // ],
+            // "group":
+            // {
+            //     "kind": "build",
+            //     "isDefault": true
+            // },
+            // "windows":
+            // {
+            //     "command": ""
+            // }
+        // }
+    ]
+}

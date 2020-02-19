@@ -1,0 +1,36 @@
+{
+    //https://code.visualstudio.com/docs/editor/tasks-appendix
+    //https://code.visualstudio.com/Docs/editor/tasks
+    "version": "2.0.0",
+    // "osx": { "options": { "cwd": "../" } },
+    // "windows": { "options": { "cwd": "../" } },
+    "tasks":
+    [
+        {
+            "label": "run-frontend-live-edit",
+            "type": "shell",
+            "command": "npm start",
+            "isBackground": false,
+            "windows": { "command": "npm start" }
+        },
+        // {
+            // "label": "my-task-label",
+            // "type": "shell | process",
+            // "command": "",
+            // "isBackground": false,
+            // "args":
+            // [
+            //     ""
+            // ],
+            // "group":
+            // {
+            //     "kind": "build",
+            //     "isDefault": true
+            // },
+            // "windows":
+            // {
+            //     "command": ""
+            // }
+        // }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "run": {
+        "default": "",
+        "items": [
+            {
+                "name": "VIR-Backend",
+                "projectName": "VIR-Backend",
+                "workingDirectory": "${workspaceFolder}",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    },
+    "debug": {
+        "default": "",
+        "items": [
+            {
+                "name": "VIR-Backend",
+                "projectName": "VIR-Backend",
+                "workingDirectory": "${workspaceFolder}",
+                "args": [],
+                "vmargs": [],
+                "env": {},
+                "preLaunchTask": ""
+            }
+        ]
+    }
+}
