@@ -33,6 +33,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.amazonaws.services.textract.AmazonTextract;
+import com.amazonaws.services.textract.AmazonTextractClientBuilder;
+import com.amazonaws.services.textract.model.*;
+import com.amazonaws.util.IOUtils;
+import java.nio.ByteBuffer;
+import java.util.List;
+
 @Service("imgProcessorService")
 public class ImgProcessorService implements FileProcessorService
 {
@@ -110,6 +117,7 @@ public class ImgProcessorService implements FileProcessorService
 		(
 			InputStream stream = file.getInputStream();
 			TikaInputStream tikaStream = TikaInputStream.get(stream);
+			InputStream stream2 = file.getInputStream();
 		)
 		{	
 			this.startStopWatch();
@@ -135,7 +143,33 @@ public class ImgProcessorService implements FileProcessorService
 			//this is due to the fact that it uses native resources and it could lead to memory leaks if NOT handled properly
 			//please note also that this could easily be switched to something else either as a replacement or for comparison
 			//that's the reason for creating the interface
-			try(OcrReader tesseractOcrReader = new TesseractOcrReader())
+
+			AmazonTextract client = AmazonTextractClientBuilder.defaultClient();
+
+			ByteBuffer imageBytes = null;
+			imageBytes = ByteBuffer.wrap(IOUtils.toByteArray(stream2));
+
+
+			DetectDocumentTextRequest request = new DetectDocumentTextRequest().withDocument(new Document().withBytes(imageBytes));
+						
+			DetectDocumentTextResult textractResult = client.detectDocumentText(request);
+			List<Block> blocks = textractResult.getBlocks();
+
+			String awsStringResult = "";
+
+			for (Block block : blocks) {
+				if ((block.getBlockType()).equals("LINE")) {
+							awsStringResult = awsStringResult + " \n" + block.getText();
+				}
+			}
+
+			System.out.println(awsStringResult);
+			Text awsTextResult = this.getProcessedString(awsStringResult);
+			
+			return awsTextResult;
+			/*
+			String tessdataPath = System.getenv("TESSDATA_PREFIX") + "\\tessdata";
+			try(OcrReader tesseractOcrReader = new TesseractOcrReader(tessdataPath, "eng"))
 			{
 				this.printStopWatchMessage("Finished tesseract allocating. It took ", StopWatchOutputOptions.TIME);
 
@@ -225,8 +259,9 @@ public class ImgProcessorService implements FileProcessorService
 				result2 = null;
 				System.gc();
 
-				return bestResult;
+				return awsTextResult;
 			}//try
+			*/
 		}//try
 		catch(UnparseableContentException ex)
 		{
