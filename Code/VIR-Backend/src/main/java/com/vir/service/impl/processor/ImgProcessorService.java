@@ -40,12 +40,17 @@ import com.amazonaws.util.IOUtils;
 import java.nio.ByteBuffer;
 import java.util.List;
 
+import java.time.Month;
+import java.time.LocalDate;
+
 @Service("imgProcessorService")
 public class ImgProcessorService implements FileProcessorService
 {
 	private final TextProcessorService textProcessorService;
 	private final EmailService emailService;
 	private final boolean isProduction;
+	private Month latestMonth;
+	private int textractCounter;
 	public ImgProcessorService
 	(
 		@Qualifier("optimizedTextProcessorService")
@@ -57,6 +62,8 @@ public class ImgProcessorService implements FileProcessorService
 		this.emailService = emailService;
 		String prodEnvironmentVariable = System.getenv("PROD");
 		this.isProduction = "1".equals(prodEnvironmentVariable);
+		this.latestMonth = LocalDate.now().getMonth();
+		this.textractCounter = 0;
 	}
 	private Text getProcessedString(String s)
 	{
@@ -117,7 +124,7 @@ public class ImgProcessorService implements FileProcessorService
 		(
 			InputStream stream = file.getInputStream();
 			TikaInputStream tikaStream = TikaInputStream.get(stream);
-			InputStream stream2 = file.getInputStream();
+			InputStream imageByteStream = file.getInputStream();
 		)
 		{	
 			this.startStopWatch();
@@ -135,23 +142,34 @@ public class ImgProcessorService implements FileProcessorService
 			System.gc();
 
 
-			this.printStopWatchMessage("Finished converting images. It took ", StopWatchOutputOptions.TIME);
+			//this.printStopWatchMessage("Finished converting images. It took ", StopWatchOutputOptions.TIME);
 
 			this.resetAndRestartStopWatch();
-			this.printStopWatchMessage("Begin tesseract allocating.", StopWatchOutputOptions.NO_TIME);
+			//this.printStopWatchMessage("Begin tesseract allocating.", StopWatchOutputOptions.NO_TIME);
 			//the tesseract ocr reader should NEVER be used as service and injected for the lifetime of the application
 			//this is due to the fact that it uses native resources and it could lead to memory leaks if NOT handled properly
 			//please note also that this could easily be switched to something else either as a replacement or for comparison
 			//that's the reason for creating the interface
 
+			if(textractCounter > 1000 && this.latestMonth == LocalDate.now().getMonth())
+			{
+				System.out.println("Error test");
+				throw new UnparseableContentException("Textract uses exceeded");
+			}
+			else if(this.latestMonth != LocalDate.now().getMonth())
+			{
+				this.textractCounter = 0;
+				this.latestMonth = LocalDate.now().getMonth();
+			}
+
 			AmazonTextract client = AmazonTextractClientBuilder.defaultClient();
 
 			ByteBuffer imageBytes = null;
-			imageBytes = ByteBuffer.wrap(IOUtils.toByteArray(stream2));
-
+			imageBytes = ByteBuffer.wrap(IOUtils.toByteArray(imageByteStream));
 
 			DetectDocumentTextRequest request = new DetectDocumentTextRequest().withDocument(new Document().withBytes(imageBytes));
-						
+			textractCounter++;			
+
 			DetectDocumentTextResult textractResult = client.detectDocumentText(request);
 			List<Block> blocks = textractResult.getBlocks();
 
@@ -163,10 +181,12 @@ public class ImgProcessorService implements FileProcessorService
 				}
 			}
 
+			
 			System.out.println(awsStringResult);
 			Text awsTextResult = this.getProcessedString(awsStringResult);
-			
+
 			return awsTextResult;
+			//TESSERACT
 			/*
 			String tessdataPath = System.getenv("TESSDATA_PREFIX") + "\\tessdata";
 			try(OcrReader tesseractOcrReader = new TesseractOcrReader(tessdataPath, "eng"))
