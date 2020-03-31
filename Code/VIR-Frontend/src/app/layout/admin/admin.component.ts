@@ -139,6 +139,7 @@ export class AdminComponent implements OnInit {
 
   fileUploadListener($event:any):void{
     
+    console.log('starting to add csv');
     this.csvadd($event.target, this.addWord.bind(this), this._admin, this.processing, this.sessionHistory, this.index, this.errorAdd, this.categoryItems);
     console.log('out of it');
     
@@ -165,61 +166,74 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
      reader.onloadend =(e)=> {
       var csvData = reader.result;
       console.log(csvData);
-      fields = csvData.split('\n');
+      
+      fields = csvData.split('\n'); 
 
 
       fields.forEach(function(element){
+        
         console.log('in loop'); 
         var array = element.split(',');
+        console.log('HEY YOU');
         console.log(element);
-        wordArea=array[0];
+        //wordArea=array[0];
+        //console.log(wordArea);
+        //console.log(categoryItems[1]);
+        wordArea=element.replace(/[^a-zA-Z 0-9]/g, "");
+        console.log('stripped:');
         console.log(wordArea);
-        console.log(categoryItems[1])
-        array[1]=array[1].replace(/[^a-zA-Z ]/g, "");
-       if(array[1]==='awl'){
-         category=categoryItems[1];
+       if(wordArea=='awl'){
+         category=wordArea;
        }
-       if(array[1]==='stem'){
-        category=categoryItems[2];
+       if(wordArea=='stem'){
+        category=wordArea;
       }
-      if(array[1]==='hi'){
-        category=categoryItems[3];
+      if(wordArea=='hi'){
+        category=wordArea;
       }
-      if(array[1]==='med'){
-        category=categoryItems[4];
+      if(wordArea=='med'){
+        category=wordArea;
       }
-      if(array[1]==='low'){
-        category=categoryItems[5];
+      if(wordArea=='low'){
+        category=wordArea;
       }
-      if(array[1]==='K1'){
-        category=categoryItems[6];
+      if(wordArea=='K1'){
+        category=wordArea;
+        console.log(wordArea);
       }
-      if(array[1]==='K2'){
-        category=categoryItems[7];
+      if(wordArea=='K2'){
+        category=wordArea;
       }
-      if(array[1]==='baw'){
-        category=categoryItems[8];
+      if(wordArea=='baw'){
+        category=wordArea;
       }
+      else
+      {
 
-      console.log(category);
-        _admin.postWord(wordArea, category)
-      .subscribe
-      (res => {
-        processing = false;
-        sessionHistory[index] = array[0] + ' is added to ' + array[1] + ' category.'
-        index++;
-      },
-      (err: HttpErrorResponse) => {
-        if (err.error instanceof Error) {
-          console.log('Client-side Error occured');
-        } else {
-          errorAdd = true;
+        console.log("HEY");
+        //category = 'K1';
+        console.log(category);
+        //console.log(array[1]);
+        console.log(element);
+          _admin.postWord(element, category)
+        .subscribe 
+        (res => {
           processing = false;
-          console.log('Server-side Error occured');
+          sessionHistory[index] = element + ' is added to ' + category + ' category.'
+          index++;
+        },
+        (err: HttpErrorResponse) => {
+          if (err.error instanceof Error) {
+            console.log('Client-side Error occured');
+          } else {
+            errorAdd = true;
+            processing = false;
+            console.log('Server-side Error occured');
+          }
         }
+        );
       }
-      );
-        
+      
       }
     
     ,
