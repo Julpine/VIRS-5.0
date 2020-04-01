@@ -21,6 +21,7 @@ export class EssentialWordsComponent implements OnInit {
 
   k1page = 1;
   k2page = 1;
+  k3page = 1;
   bawpage = 1;
 
   defaultPagination: number;
@@ -64,6 +65,7 @@ export class EssentialWordsComponent implements OnInit {
   resetPagination() {
     this.k1page = 1;
     this.k2page = 1;
+	this.k3page = 1;
     this.bawpage = 1;
   }
 
@@ -101,10 +103,15 @@ export class EssentialWordsComponent implements OnInit {
   getK2WordList(pageNumber: number): void {
     this.getWordList(pageNumber - 1, 'k2', this.tableSize, this.sort)
   }
+  
+  getK3WordList(pageNumber: number): void {
+    this.getWordList(pageNumber - 1, 'k3', this.tableSize, this.sort)
+  }
 
   getBAWWordList(pageNumber: number): void {
     this.getWordList(pageNumber - 1, 'baw', this.tableSize, this.sort)
   }
+
 
   convertText(category: string)
   {
@@ -115,6 +122,8 @@ export class EssentialWordsComponent implements OnInit {
           temp = 'K1'
       } else if (category === 'k2') {
         temp = 'K2'
+	  } else if (category === 'k3') {
+        temp = 'K3'
       } else if (category === 'baw') {
         temp = 'Basic Academic Words'
       }
@@ -183,7 +192,7 @@ export class EssentialWordsComponent implements OnInit {
       this.errorSearch = false;
       this.searchTrigger = true;
     this.alertWord = this.searchArea;
-    var categories = "K1,K2,baw";
+    var categories = "K1,K2,K3,baw";
 
     this._wordsList.getWord(this.searchArea, categories)
       .subscribe
