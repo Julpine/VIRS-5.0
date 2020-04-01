@@ -106,6 +106,6 @@ export class EnhancedTextResultComponent implements OnInit {
   activeCategory(cat: string) {
       this.category = cat;
       // tslint:disable-next-line:max-line-length
-      this.wordCategory = ( cat === 'awl') ? 'Academic' :( cat === 'stem') ? 'STEM' : ( cat === 'hi') ? 'Other High Frequency' : ( cat === 'med') ? 'Medium Frequency' : ( cat === 'low') ? 'Low Frequency' :( cat === 'K1') ? 'K1' :( cat === 'K2') ? 'K2' :'Names & Off-Lists'; 
+      this.wordCategory = ( cat === 'awl') ? 'Academic' :( cat === 'stem') ? 'STEM' : ( cat === 'hi') ? 'Other High Frequency' : ( cat === 'med') ? 'Medium Frequency' : ( cat === 'low') ? 'Low Frequency' :( cat === 'K1') ? 'K1' :( cat === 'K2') ? 'K2' :( cat === 'K3') ? 'K3' : 'Names & Off-Lists'; 
   }
 }
