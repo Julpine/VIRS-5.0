@@ -27,7 +27,7 @@ export class AdminComponent implements OnInit {
   deleteWordMessage: string;
   alertWord: string;
 
-  categoryItems: string[] = ['Category...', 'awl','stem', 'hi', 'med', 'low', 'K1', 'K2', 'baw'];
+  categoryItems: string[] = ['Category...', 'awl','stem', 'hi', 'med', 'low', 'K1', 'K2', 'K3', 'baw'];
   category: string = this.categoryItems[0];
 
   sessionHistory: string[] = [];
@@ -167,7 +167,7 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
       var csvData = reader.result;
       console.log(csvData);
       
-      fields = csvData.split('\n'); 
+      fields = (csvData as string).split('\n'); 
 
 
       fields.forEach(function(element){
@@ -202,6 +202,9 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
         console.log(wordArea);
       }
       if(wordArea=='K2'){
+        category=wordArea;
+      }
+      if(wordArea=='K3'){
         category=wordArea;
       }
       if(wordArea=='baw'){

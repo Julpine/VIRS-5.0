@@ -3,6 +3,7 @@
     <div class="btn-group hidden-sm-down">
         <button type="button" class="btn btn-success" (click)="updateCategory('k1')">K1</button>
         <button type="button" class="btn purpleButton" (click)="updateCategory('k2')">K2</button>
+		<button type="button" class="btn btn-warning" (click)="updateCategory('k3')">K3</button>
         <button type="button" class="btn btn-danger" (click)="updateCategory('baw')">Basic Academic Words</button>
     </div>
 </div>
@@ -12,11 +13,13 @@
     <div class="btn-group hidden-md-up" style="width: 200%;">
         <button type="button" class="btn btn-primary" (click)="updateCategory('k1')">K1</button>
         <button type="button" class="btn purpleButton" (click)="updateCategory('k2')">K2</button>
+		<button type="button" class="btn btn-warning" (click)="updateCategory('k3')">K3</button>
         <button type="button" class="btn btn-danger" (click)="updateCategory('baw')">Basic Academic Words</button>
         
     <div class="btn-group hidden-md-up" style="width: 143%;">
         <button type="button" class="btn btn-success" (click)="updateCategory('k1')">K1</button>
         <button type="button" class="btn purpleButton" (click)="updateCategory('k2')">K2</button>
+		<button type="button" class="btn btn-warning" (click)="updateCategory('k3')">K3</button>
     </div>
 </div>
 
@@ -122,6 +125,10 @@
         <div *ngSwitchCase="'k2'">
             <ngb-pagination [collectionSize]="page.totalElements" [pageSize]="tableSize" [(page)]="k2page" [maxSize]="4" [rotate]="true"
                             [ellipses]="false" (pageChange)="getK2WordList(k2page)" [boundaryLinks]="true"></ngb-pagination>
+        </div>
+		<div *ngSwitchCase="'k3'">
+            <ngb-pagination [collectionSize]="page.totalElements" [pageSize]="tableSize" [(page)]="k3page" [maxSize]="4" [rotate]="true"
+                            [ellipses]="false" (pageChange)="getK3WordList(k3page)" [boundaryLinks]="true"></ngb-pagination>
         </div>
         <div *ngSwitchCase="'baw'">
             <ngb-pagination [collectionSize]="page.totalElements" [pageSize]="tableSize" [(page)]="bawpage" [maxSize]="4" [rotate]="true"
