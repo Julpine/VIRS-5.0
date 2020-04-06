@@ -89,33 +89,9 @@
           </div>
         </div>
 
-        <!--Bulk word upload-->
         <body ng-controller="MainCtrl">
-        
-          <h1>Add words through CSV File</h1>
-          <div class="row top-buffer"></div>
-
-          <div class="row">
-            <input type="file" accept=".csv" (change) = "fileUploadListener($event)" />
-          </div>
-
-          <div class="row top-buffer"></div>
-
-          <div class="row">
-            <select name = "bulkUploadSelect" class="custom-select mb-2 mr-sm-2 mb-sm-0 col-2" id="inlineFormCustomSelect" [(ngModel)]="bulkCategory">
-              <option *ngFor="let i of categoryItems" [value]="i">{{i}}</option>
-            </select>
-            <br>
-          
-            <div class="col-3 float-right">
-              <button class="btn btn-primary" (click)="csvaddCaller()" >
-                <i class="fa fa-plus" aria-hidden="true"></i> Upload</button>
-
-              <button class="btn btn-primary" (click)="csvCategoryUpdate(bulkCategory)" >
-                <i class="fa fa-plus" aria-hidden="true"></i> DELETE and Upload</button>
-            </div>
-            
-          </div>
+          <h1>Add words trough CSV File</h1>
+          <input type="file" accept=".csv" (change) = "fileUploadListener($event)" />
         </body>
 
 

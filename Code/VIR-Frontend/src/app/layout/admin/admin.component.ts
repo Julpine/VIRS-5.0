@@ -17,7 +17,6 @@ export class AdminComponent implements OnInit {
   errorAdd = false;
   word: IWord;
   showTable = false;
-  csvFile: any;
 
   @Input() searchArea: string;
   @Input() wordArea: string;
@@ -27,12 +26,9 @@ export class AdminComponent implements OnInit {
   editWordMessage: string;
   deleteWordMessage: string;
   alertWord: string;
-  deleteCategory: string;
 
   categoryItems: string[] = ['Category...', 'awl','stem', 'hi', 'med', 'low', 'K1', 'K2', 'K3', 'baw'];
   category: string = this.categoryItems[0];
-
-  bulkCategory: string = this.categoryItems[0];
 
   sessionHistory: string[] = [];
   index = 1;
@@ -144,53 +140,10 @@ export class AdminComponent implements OnInit {
   fileUploadListener($event:any):void{
     
     console.log('starting to add csv');
-    //bind $event.target to csv here? then use that binding to call whichever function is needed
-    this.csvFile = $event.target;
-    //this.csvadd($event.target, this.addWord.bind(this), this._admin, this.processing, this.sessionHistory, this.index, this.errorAdd, this.categoryItems);
+    this.csvadd($event.target, this.addWord.bind(this), this._admin, this.processing, this.sessionHistory, this.index, this.errorAdd, this.categoryItems);
     console.log('out of it');
     
    }
-
-csvaddCaller(): void {
-  console.log('in csvaddCaller');
-  this.csvadd(this.csvFile, this.addWord.bind(this), this._admin, this.processing, this.sessionHistory, this.index, this.errorAdd, this.categoryItems);
-}
-
-csvCategoryUpdate(bulkCategory: string): void {
-  this.processing = true;
-  this.deleteCategory = bulkCategory;
-  this._admin.deleteAllInCategory(this.deleteCategory)
-    .subscribe
-        (res => {
-          this.processing = false;
-        },
-        (err: HttpErrorResponse) => {
-          if (err.error instanceof Error) {
-            console.log('Client-side Error occured');
-          } else {
-            this.error = true;
-            this.processing = false;
-            console.log('Server-side Error occured');
-          }
-        }
-        );
-    this.csvCategoryUpdateHelper();
-  
-
-}
-
-csvCategoryUpdateHelper(): void {
-
-  const date = Date.now();
-  let currentDate = null;
-  do {
-    currentDate = Date.now();
-  } while (currentDate - date < 5000);
-  
-  this.csvaddCaller();
-  
-}
-
 
   
 csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd, categoryItems ):void { 
@@ -216,7 +169,6 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
       
       fields = (csvData as string).split('\n'); 
 
-      category = this.bulkCategory;
 
       fields.forEach(function(element){
         
@@ -230,7 +182,6 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
         wordArea=element.replace(/[^a-zA-Z 0-9]/g, "");
         console.log('stripped:');
         console.log(wordArea);
-<<<<<<< Updated upstream
        if(wordArea=='awl'){
          category=wordArea;
        }
@@ -260,10 +211,6 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
         category=wordArea;
       }
       else
-=======
-       
-      if(wordArea!='' && wordArea!=' ')
->>>>>>> Stashed changes
       {
 
         console.log("HEY");
