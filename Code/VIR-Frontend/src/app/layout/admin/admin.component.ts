@@ -230,40 +230,8 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
         wordArea=element.replace(/[^a-zA-Z 0-9]/g, "");
         console.log('stripped:');
         console.log(wordArea);
-<<<<<<< Updated upstream
-       if(wordArea=='awl'){
-         category=wordArea;
-       }
-       if(wordArea=='stem'){
-        category=wordArea;
-      }
-      if(wordArea=='hi'){
-        category=wordArea;
-      }
-      if(wordArea=='med'){
-        category=wordArea;
-      }
-      if(wordArea=='low'){
-        category=wordArea;
-      }
-      if(wordArea=='K1'){
-        category=wordArea;
-        console.log(wordArea);
-      }
-      if(wordArea=='K2'){
-        category=wordArea;
-      }
-      if(wordArea=='K3'){
-        category=wordArea;
-      }
-      if(wordArea=='baw'){
-        category=wordArea;
-      }
-      else
-=======
        
       if(wordArea!='' && wordArea!=' ')
->>>>>>> Stashed changes
       {
 
         console.log("HEY");
