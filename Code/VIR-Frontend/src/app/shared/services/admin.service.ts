@@ -2,7 +2,7 @@ import { Injectable, Inject, Input } from '@angular/core';
 import { Http, Response, Headers } from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IWord } from '../interface'
+import { IPage, IWord } from '../interface'
 import 'rxjs/add/operator/do';
 
 
@@ -16,6 +16,13 @@ export class AdminService {
   // To get word ID, Value and Category
   getWord(word: string): Observable<IWord> {
     return this.http.get<IWord>(`/api/admin/words/${word}`)
+      .do((res => console.log(res)));
+  }
+
+  //delete all words in category
+  deleteAllInCategory(category: string) {
+    console.log('in deleteALlInCategory');
+    return this.http.get(`/api/admin/words/delete/${category}`)
       .do((res => console.log(res)));
   }
 

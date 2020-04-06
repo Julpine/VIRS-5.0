@@ -71,6 +71,33 @@ public class WordAdminController
 			throw new EntityNotFoundException("Word not found!");
 		}
 	}
+
+	//TEST
+	//CONSIDER DOING DELETION IN HERE
+	@ApiOperation("Deletes words by category")
+	@RequestMapping(value="/delete/{category}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public void deleteByCategory (
+			@PathVariable(name="category", required=true) String category,
+			@RequestParam(value = "page", defaultValue = "0") int page,
+			@RequestParam(value = "size", defaultValue = "20") int size,
+			@RequestParam(value = "sortKey", defaultValue = "value") String sortField,
+			@RequestParam(value = "sortDirection", defaultValue = "ASC") Direction direction) {
+
+		System.out.println("in WordAdminController");
+		this.wordRepository.removeByCategory(category);
+		/*
+		PageRequest pageRequest = new PageRequest(page, size, new Sort(direction, sortField));
+
+		Page<Word> wordList = wordRepository.findAllByCategory(pageRequest, category);
+		
+		wordList.forEach(word -> 
+		this.wordRepository.removeByCategory((word.getId().intValue()))
+		);
+		*/
+
+	}
+
+
 	
 	@ApiOperation("Deletes a word by value")
 	@DeleteMapping(value="{value}", produces = MediaType.APPLICATION_JSON_VALUE)
