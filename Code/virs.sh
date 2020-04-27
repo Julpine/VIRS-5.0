@@ -14,6 +14,12 @@ then
 
 	echo Building prod
 	./mvnw clean install -P prod -Dnpm.executable=npm -Dng.executable=ng -Dng.production.flag="--prod"
+# In case testing causes problems
+# Files in Code\VIR-Backend\src\test\java\com\vir might have to be temporarily removed.
+elif [[ $1 == 'prod-build' ]]
+then
+	echo 'Building prod'
+	./mvnw clean install -P prod -Dnpm.executable=npm -Dng.executable=ng -Dng.production.flag="--prod"
 elif [[ $1 == 'test' ]]
 then
 	echo 'Building dev and running unit tests'
@@ -22,17 +28,16 @@ elif [[ $1 == 'test-trace' ]]
 then
 	echo 'Building dev and running unit tests with tracing'
 	./mvnw install -Dnpm.executable=npm -Dng.executable=ng -P test -X
-elif [[ $1 == 'install' ]]
+elif [[ $1 == 'install-only' ]]
 then
 	echo 'Installing and building dev'
 	./mvnw install -Dnpm.executable=npm -Dng.executable=ng -P install
-elif [[ $1 == 'install-test' ]]
+elif [[ $1 == 'install' ]]
 then
 	echo 'Installing, building dev and running unit tests'
 	./mvnw install -Dnpm.executable=npm -Dng.executable=ng -P install,test
 elif [[ $1 == 'clean' ]]
 then
-	#should we perhaps do a comobo of clean with test/install/default?
 	echo 'Cleaning project'
 	./mvnw clean
 elif [[ $1 == 'integration-test' ]]

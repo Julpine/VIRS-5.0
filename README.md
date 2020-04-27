@@ -1,4 +1,4 @@
-﻿# Up and running (ReadMe Created by Alfredo Lopez, Modified by Chris Hidalgo)
+﻿# Up and running 
 
 * Clone the repo
 * Create a local MySQL account with credentials
@@ -17,7 +17,7 @@ password: root
 * Install all dependencies:
 ```
 
-./virs.sh install ('virs.cmd install' for Windows)
+./virs.sh install-only ('virs.cmd install-only' for Windows)
 
 * Run: 
 ```
