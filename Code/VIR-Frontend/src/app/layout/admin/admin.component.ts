@@ -214,7 +214,7 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
       var csvData = reader.result;
       console.log(csvData);
       
-      fields = (csvData as string).split('\n'); 
+      fields = csvData.split('\n'); 
 
       category = this.bulkCategory;
 
@@ -224,7 +224,7 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
         var array = element.split(',');
         console.log('HEY YOU');
         console.log(element);
-        //wordArea=array[0];
+        wordArea=array[0];
         //console.log(wordArea);
         //console.log(categoryItems[1]);
         wordArea=element.replace(/[^a-zA-Z 0-9]/g, "");
@@ -234,7 +234,7 @@ csvadd(csv: any,  callback, _admin, processing, sessionHistory, index, errorAdd,
       if(wordArea!='' && wordArea!=' ')
       {
 
-        console.log("HEY");
+        console.log(wordArea);
         //category = 'K1';
         console.log(category);
         //console.log(array[1]);
