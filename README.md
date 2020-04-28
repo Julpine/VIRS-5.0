@@ -10,9 +10,8 @@ password: root
 * Enter the password "root" when prompted"
 * Create a schema named: create schema vir;
 * Exit: exit
-* Add tables: mysql -u root -p vir < /virs/Code/VIR-Backend/src/main/resources/schema.sql
+* Add tables: mysql -u root -p vir < /virs/Code/VIR-Backend/src/main/resources/schema.sql\
 * Add data to the tables: mysql -u root -p vir < /virs/Code/VIR-Backend/src/main/resources/data.sql 
-* Add the EWL data: mysql -u root -p vir < /virs/Code/VIR-Backend/src/main/resources/queriesEWL.sql 
 
 * Install all dependencies:
 ```
@@ -21,11 +20,14 @@ password: root
 
 * Run: 
 ```
-./virs.sh run	('virs.bat run' for Windows)
+./virs.sh run	('virs.cmd run' for Windows)
 
 NOTE: you have to be in the .../Code directory in order to execute these commands
 ```
 * Access the application at [localhost:8080](localhost:8080)
+
+* Prod:
+./virs.sh prod-build
 
 _Note:_
 If you are using a Unix like system make sure you give execution permissions to the files.
@@ -81,7 +83,7 @@ pom.xml          | Configuration file to build the whole project. Read more abou
 README.md        | This readme file (talk about recursion...)
 
 
-# Creating AWS Environment From Scratch
+# Creating AWS Environment From Scratch [NOTE: You should not have to change any of the current infastructure but if you do this is how]
 
 ### Elastic Beanstalk Dashboard
 - If needed create a new Application.

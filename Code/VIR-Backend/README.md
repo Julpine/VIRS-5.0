@@ -7,6 +7,10 @@
 *Set up an environmental variable called "SENDGRID_API_KEY". This is used for sending emails
 *Set up an environmental variable called "PROD" and set the value to 0. This is used by the application to determine whether or not emails can be sent (in production only, but this can be modified for debugging/testing. It's not even necessary to have as "1" for integration tests because the library will just make the REST calls to make sure it can connect. So unless needed just set this to "0")
 
+Install Tesseract for your system. https://github.com/tesseract-ocr/tesseract/wiki
+* Create an environment variable TESSERACT_PATH pointing to your installation directory. Where the executable is.
+* Create an environment variable TESSDATA_PREFIX poiting to the directory above the 'tessdata' one; should be in your installation directory but it can be downloaded from the web.
+
 *To Build:
 ```
 ./mvnw build (mvnw.cmd for Windows)
@@ -31,7 +35,7 @@ You should get a "Build Success" at the end of the process.
 │   ├── .ebextensions
 │   │   ├── env.config
 │   │   └── nginx
-│   ├── Procfile
+│   ├── Procfile\
 │   └── VIR-Backend-0.0.29-SNAPSHOT.jar
 ├── mvnw
 ├── mvnw.cmd
