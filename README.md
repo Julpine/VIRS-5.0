@@ -1,4 +1,4 @@
-﻿# Up and running 
+﻿# Up and running
 
 * Clone the repo
 * Create a local MySQL account with credentials
